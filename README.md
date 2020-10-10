@@ -1,4 +1,4 @@
-a# Graph
+# Graph
 
 ## Table of Content
 1. [Features](#features)
