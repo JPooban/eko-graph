@@ -56,7 +56,7 @@ class Graph {
         }
       }
 
-      if (current !== nextNode) return 'No Such Route';
+      if (current !== nextNode) throw new Error('No Such Route');
     }
 
     return cost;
