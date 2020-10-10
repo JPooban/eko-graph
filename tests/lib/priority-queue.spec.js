@@ -52,15 +52,17 @@ describe('priority queue', () => {
       const queue = new PriorityQueue();
 
       // act
-      queue.enqueue('some value', 5);
-      queue.enqueue('some value', 3);
-      queue.enqueue('some value', 1);
+      queue.enqueue('value with priority 5', 5);
+      queue.enqueue('value with priority 1', 1);
+      queue.enqueue('value with priority 3', 3);
+      queue.enqueue('another value with priority 1', 1);
 
       // assert
-      expect(queue.values).toBe([
-        { val: 'some value', priority: 1 },
-        { val: 'some value', priority: 5 },
-        { val: 'some value', priority: 3 },
+      expect(queue.values).toStrictEqual([
+        { val: 'value with priority 1', priority: 1 },
+        { val: 'another value with priority 1', priority: 1 },
+        { val: 'value with priority 3', priority: 3 },
+        { val: 'value with priority 5', priority: 5 },
       ]);
     });
   });
