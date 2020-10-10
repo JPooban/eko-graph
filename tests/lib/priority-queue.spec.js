@@ -23,6 +23,7 @@ describe('priority queue', () => {
 
       // assert
       expect(Array.isArray(queue.values)).toBe(true);
+      expect(queue.values.length).toBe(0);
     });
   });
 
