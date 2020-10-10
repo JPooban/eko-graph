@@ -85,7 +85,7 @@ describe('graph', () => {
     });
   });
 
-  describe('getCheapestPath', () => {
+  describe('getCheapestDeliveryCost', () => {
     it('should throw an error if start or end vertex is not exist in adjacency list', () => {
       // arrage
       const graph = new Graph();
@@ -93,8 +93,8 @@ describe('graph', () => {
       graph.addAdjacency('AB1');
 
       // act and assert
-      expect(() => graph.getCheapestPath('W', 'A')).toThrowError('the start or end vertex is not exist');
-      expect(() => graph.getCheapestPath('A', 'W')).toThrowError('the start or end vertex is not exist');
+      expect(() => graph.getCheapestDeliveryCost('W', 'A')).toThrowError('the start or end vertex is not exist');
+      expect(() => graph.getCheapestDeliveryCost('A', 'W')).toThrowError('the start or end vertex is not exist');
     });
 
     it('should throw an error if start or end vertex is not exist in adjacency list', () => {
@@ -113,8 +113,8 @@ describe('graph', () => {
       graph.addAdjacency('FD1');
 
       // act
-      const firstPath = graph.getCheapestPath('E', 'D');
-      const secondPath = graph.getCheapestPath('E', 'E');
+      const firstPath = graph.getCheapestDeliveryCost('E', 'D');
+      const secondPath = graph.getCheapestDeliveryCost('E', 'E');
 
       // assert
       expect(firstPath).toBe(9);
