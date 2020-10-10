@@ -63,13 +63,13 @@ class Graph {
   }
 
   /**
-   * Get cheapest path
+   * Get cheapest delivery cost
    *
    * @param {string} start - start vertex
    * @param {string} end - end vertex
    * @return {number}
    */
-  getCheapestPath (start, end) {
+  getCheapestDeliveryCost (start, end) {
     if (!this.adjacency[start] || !this.adjacency[end]) throw new Error('the start or end vertex is not exist');
 
     const queue = new PriorityQueue();
