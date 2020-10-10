@@ -1,12 +1,18 @@
 {
   "name": "eko-graph",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
-  "keywords": [ "directed graph", "weighted graph", "graph", "shortest path", "dijkstra" ],
+  "keywords": [
+    "directed graph",
+    "weighted graph",
+    "graph",
+    "shortest path",
+    "dijkstra"
+  ],
   "author": "jugkapong pooban <j.pooban@gmail.com>",
   "license": "MIT",
   "devDependencies": {
