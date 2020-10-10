@@ -1,4 +1,8 @@
+/* eslint-disable guard-for-in, no-restricted-syntax */
+
 'use strict';
+
+const { PriorityQueue } = require('./lib/priority-queue');
 
 // directed and weighted graph
 class Graph {
@@ -37,13 +41,12 @@ class Graph {
     let vertex = this.adjacency[current];
     let cost = 0;
 
-    /* eslint-disable guard-for-in, no-trailing-spaces, no-restricted-syntax */
     while (path.length) {
       const nextNode = path[0];
-    
+
       for (const index in vertex) {
         const neighbor = vertex[index];
-        
+
         if (neighbor.val === nextNode) {
           vertex = this.adjacency[nextNode];
           cost += neighbor.weight;
@@ -52,12 +55,61 @@ class Graph {
           break;
         }
       }
-      /* eslint-enable guard-for-in, no-trailing-spaces, no-restricted-syntax */
 
       if (current !== nextNode) return 'No Such Route';
     }
 
     return cost;
+  }
+
+  /**
+   * Get cheapest path
+   *
+   * @param {string} start - start vertex
+   * @param {string} end - end vertex
+   * @return {number}
+   */
+  getCheapestPath (start, end) {
+    if (!this.adjacency[start] || !this.adjacency[end]) throw new Error('the start or end vertex is not exist');
+
+    const queue = new PriorityQueue();
+    const distances = {};
+    const previous = {};
+
+    let smallest;
+
+    // build up initial state
+    for (const vertex in this.adjacency) {
+      if (vertex === start) {
+        distances[vertex] = 0;
+        queue.enqueue(vertex, 0);
+      } else {
+        distances[vertex] = Infinity;
+        queue.enqueue(vertex, Infinity);
+      }
+
+      previous[vertex] = null;
+    }
+
+    while (queue.values.length) {
+      smallest = queue.dequeue().val;
+
+      if (smallest === end && distances[smallest] !== 0) break;
+
+      // eslint-disable-next-line no-loop-func
+      this.adjacency[smallest].forEach((neighbor) => {
+        const candidate = distances[smallest] + neighbor.weight;
+
+        if (candidate < distances[neighbor.val] || neighbor.val === end) {
+          distances[neighbor.val] = candidate;
+          previous[neighbor.val] = smallest;
+
+          queue.enqueue(neighbor.val, candidate);
+        }
+      });
+    }
+
+    return distances[end];
   }
 }
 
