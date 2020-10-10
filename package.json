@@ -1,14 +1,14 @@
 {
-  "name": "eko-test",
+  "name": "eko-graph",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [ "directed graph", "weighted graph", "graph", "shortest path", "dijkstra" ],
+  "author": "jugkapong pooban <j.pooban@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
     "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^3.3.0",
