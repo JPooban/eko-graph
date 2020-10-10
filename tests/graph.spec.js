@@ -40,4 +40,48 @@ describe('graph', () => {
       });
     });
   });
+
+  describe('getDeliveryCost', () => {
+    it('should throw an error if the first argument is not an array', () => {
+      // arrange
+      const graph = new Graph();
+
+      // act and assert
+      expect(() => graph.getDelivertCost('a', 'b', 'e')).toThrowError('the argument 1 must be an array');
+    });
+
+    it('should return the cost as the number if the given path is exist', () => {
+      // arrange
+      const graph = new Graph();
+
+      graph.addAdjacency('AB1');
+      graph.addAdjacency('AD10');
+      graph.addAdjacency('​BE3');
+
+      // act
+      const firstPath = graph.getDelivertCost([ 'A', 'B', 'E' ]);
+      const secondPath = graph.getDelivertCost([ 'A', 'D' ]);
+
+      // assert
+      expect(firstPath).toBe(4);
+      expect(secondPath).toBe(10);
+    });
+
+    it('should return `No Such Route` if the given path is not exist', () => {
+      // arrange
+      const graph = new Graph();
+
+      graph.addAdjacency('AB1');
+      graph.addAdjacency('AC4');
+      graph.addAdjacency('​BE3');
+
+      // act
+      const firstRoute = graph.getDelivertCost([ 'A', 'B', 'A' ]);
+      const secondRoute = graph.getDelivertCost([ 'a', 'b', 'e' ]);
+
+      // assert
+      expect(firstRoute).toBe('No Such Route');
+      expect(secondRoute).toBe('No Such Route');
+    });
+  });
 });
