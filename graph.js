@@ -1,5 +1,6 @@
 'use strict';
 
+// directed and weighted graph
 class Graph {
   constructor () {
     this.adjacency = {};
