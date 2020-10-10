@@ -1,0 +1,7 @@
+coverage
+node_modules
+example
+tests
+.editorconfig
+.eslintrc.yml
+jest.config.js
