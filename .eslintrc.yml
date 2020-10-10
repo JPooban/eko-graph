@@ -1,0 +1,52 @@
+env:
+  browser: true
+  commonjs: true
+  es2021: true
+  node: true
+  jest: true
+extends:
+  - airbnb-base
+parserOptions:
+  ecmaVersion: 12
+  sourceType: script
+rules:
+  space-before-function-paren:
+    - error
+    - always
+  strict:
+    - error
+    - global
+  no-console:
+    - 0
+  array-bracket-spacing:
+    - error
+    - always
+    - objectsInArrays: false
+      arraysInArrays: false
+  max-len:
+    - error
+    - 150
+    - 2
+    - ignoreUrls: true
+      ignoreComments: false
+      ignoreRegExpLiterals: true
+      ignoreStrings: true
+      ignoreTemplateLiterals: true
+  object-curly-newline:
+    - error
+    - ObjectExpression:
+        minProperties: 6
+        multiline: true
+        consistent: true
+      ObjectPattern:
+        minProperties: 6
+        multiline: true
+        consistent: true
+      ImportDeclaration:
+        minProperties: 6
+        multiline: true
+        consistent: true
+      ExportDeclaration:
+        minProperties: 6
+        multiline: true
+        consistent: true
