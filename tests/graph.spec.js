@@ -67,7 +67,7 @@ describe('graph', () => {
       expect(secondPath).toBe(10);
     });
 
-    it('should return `No Such Route` if the given path is not exist', () => {
+    it('should throw an error with `No Such Route` message if the given path is not exist', () => {
       // arrange
       const graph = new Graph();
 
@@ -76,12 +76,12 @@ describe('graph', () => {
       graph.addAdjacency('​BE3');
 
       // act
-      const firstRoute = graph.getDelivertCost([ 'A', 'B', 'A' ]);
-      const secondRoute = graph.getDelivertCost([ 'a', 'b', 'e' ]);
+      const firstRoute = () => graph.getDelivertCost([ 'A', 'B', 'A' ]);
+      const secondRoute = () => graph.getDelivertCost([ 'a', 'b', 'e' ]);
 
       // assert
-      expect(firstRoute).toBe('No Such Route');
-      expect(secondRoute).toBe('No Such Route');
+      expect(firstRoute).toThrowError('No Such Route');
+      expect(secondRoute).toThrowError('No Such Route');
     });
   });
 
