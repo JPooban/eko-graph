@@ -84,4 +84,41 @@ describe('graph', () => {
       expect(secondRoute).toBe('No Such Route');
     });
   });
+
+  describe('getCheapestPath', () => {
+    it('should throw an error if start or end vertex is not exist in adjacency list', () => {
+      // arrage
+      const graph = new Graph();
+
+      graph.addAdjacency('AB1');
+
+      // act and assert
+      expect(() => graph.getCheapestPath('W', 'A')).toThrowError('the start or end vertex is not exist');
+      expect(() => graph.getCheapestPath('A', 'W')).toThrowError('the start or end vertex is not exist');
+    });
+
+    it('should throw an error if start or end vertex is not exist in adjacency list', () => {
+      // arrage
+      const graph = new Graph();
+
+      graph.addAdjacency('AB1');
+      graph.addAdjacency('AC4');
+      graph.addAdjacency('AD10');
+      graph.addAdjacency('BE3');
+      graph.addAdjacency('CD4');
+      graph.addAdjacency('CF2');
+      graph.addAdjacency('DE1');
+      graph.addAdjacency('EB3');
+      graph.addAdjacency('EA2');
+      graph.addAdjacency('FD1');
+
+      // act
+      const firstPath = graph.getCheapestPath('E', 'D');
+      const secondPath = graph.getCheapestPath('E', 'E');
+
+      // assert
+      expect(firstPath).toBe(9);
+      expect(secondPath).toBe(6);
+    });
+  });
 });
