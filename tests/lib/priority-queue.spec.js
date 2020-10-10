@@ -35,7 +35,7 @@ describe('priority queue', () => {
       expect(() => queue.enqueue('some value', '1')).toThrowError('priority must be a number');
     });
 
-    it('bubble up should called', () => {
+    it('`bubbleUp` should called', () => {
       // arrange
       const queue = new PriorityQueue();
       const bubbleUpStub = sandbox.stub(queue, 'bubbleUp');
@@ -67,5 +67,58 @@ describe('priority queue', () => {
     });
   });
 
-  describe('dequeue', () => {});
+  describe('dequeue', () => {
+    it('`sinkDown` should be called', () => {
+      // arrange
+      const queue = new PriorityQueue();
+      const sinkDownStub = sandbox.stub(queue, 'sinkDown');
+
+      // act
+      queue.enqueue('some value', 1);
+      queue.enqueue('some value', 3);
+
+      queue.dequeue();
+
+      // assert
+      expect(sinkDownStub.called).toBe(true);
+    });
+
+    it('should return the value with first priority in the queue', () => {
+      // arrange
+      const queue = new PriorityQueue();
+
+      // act
+      queue.enqueue('value with priority 5', 5);
+      queue.enqueue('value with priority 1', 1);
+      queue.enqueue('value with priority 3', 3);
+      queue.enqueue('another value with priority 1', 1);
+      queue.enqueue('another value with priority 5', 5);
+
+      const first = queue.dequeue();
+      const second = queue.dequeue();
+      const third = queue.dequeue();
+
+      // assert
+      expect(first).toStrictEqual({ val: 'value with priority 1', priority: 1 });
+      expect(second).toStrictEqual({ val: 'another value with priority 1', priority: 1 });
+      expect(third).toStrictEqual({ val: 'value with priority 3', priority: 3 });
+    });
+
+    it('should be empty an array if dequeue the last queue', () => {
+      // arrange
+      const queue = new PriorityQueue();
+
+      // act
+      queue.enqueue('value with priority 5', 5);
+      queue.enqueue('value with priority 1', 1);
+      queue.enqueue('value with priority 3', 3);
+
+      queue.dequeue();
+      queue.dequeue();
+      queue.dequeue();
+
+      // assert
+      expect(queue.values).toStrictEqual([]);
+    });
+  });
 });
