@@ -17,7 +17,7 @@
 - Calculate the cost from given path
 - Calculate the cheapest cost from the point to the another point
 
-## Installation <a href="install"></a>
+## Installation <a name="install"></a>
 Using [NPM](https://www.npmjs.com/package/eko-graph) or [YARN](https://yarnpkg.com/package/eko-graph)
 
 ```bash
@@ -28,7 +28,7 @@ $ npm install eko-graph --save
 $ yarn add eko-graph
 ```
 
-## Basic usage <a href="basic-usage"></a>
+## Basic usage <a name="basic-usage"></a>
 
 ```js
 'use strict';
@@ -45,7 +45,7 @@ console.log(graph.adjacency);
 // { A: [{ val: 'B', weight: 1 }, { val: 'C', weight: 4 }] }
 ```
 
-## Example <a href="example"></a>
+## Example <a name="example"></a>
 
 To view the example, clone this repo and install dependencies
 
@@ -63,9 +63,9 @@ Then run the example
 $ node ./example/get-delivery-cost.js
 ```
 
-## API <a href="api"></a>
+## API <a name="api"></a>
 
-### Get delivery cost <a href="api.get-delivery-cost"></a>
+### Get delivery cost <a name="api.get-delivery-cost"></a>
 Calculate the cost from given route.
 
 ```js
@@ -76,7 +76,7 @@ const cost = graph.getDelivertCost([ 'A', 'B', 'E' ]); // -> 4
 
 > In the case of non existing route, it will throw an error with `No Such Route` message.
 
-### Get possible delivery route number <a href="api.get-possible-delivery-route-number"></a>
+### Get possible delivery route number <a name="api.get-possible-delivery-route-number"></a>
 
 Calculate​ ​the​ ​number​ ​of​ ​possible​ ​delivery​ ​route​ ​that​ ​can​ ​be​ ​construct​ ​by​ ​the​ ​given conditions.
 
@@ -91,7 +91,7 @@ const possibleNumber = graph.getPossibleDeliveryRoute('E', 'D', { maxStop: 4 });
 |------------|-------------|-------------|
 | `maxStop`  | `undefined` | The maximum stop of each path. (count the path which is length is less than or equal `maxStop + 1`) |
 
-### Get cheapest delivery cost <a href="api.get-cheapest-delivery-cost"></a>
+### Get cheapest delivery cost <a name="api.get-cheapest-delivery-cost"></a>
 
 Calculate​ ​the​ ​cheapest​ ​delivery​ ​route​ ​between​ ​two​ vertex.
 
@@ -102,7 +102,7 @@ const cheapestCost = graph.getCheapestCost('E', 'D'); // -> 9
 ```
 
 
-## Tests <a href="tests"></a>
+## Tests <a name="tests"></a>
 
 To run unit test suite, must install the dependencies. Use [Jest](https://jestjs.io/en/) as the test framework.
 
@@ -114,6 +114,6 @@ $ npm install
 $ npm run test
 ```
 
-## License
+## License <a name="license"></a>
 [MIT](https://github.com/JPooban/eko-graph/blob/main/LICENSE)
 
