@@ -89,7 +89,7 @@ const possibleNumber = graph.getPossibleDeliveryRoute('E', 'D', { maxStop: 4 });
 #### Properties
 |  Property  |   Default   | Description |
 |------------|-------------|-------------|
-| `maxStop`  | `undefined` | The maximum stop of each path. (count the path which is length is less than or equal `maxStop + 1`) |
+| `maxStop`  | `undefined` | The maximum stop of each path. <br /> (count the path which is length is less than or equal `maxStop + 1`) |
 
 ### Get cheapest delivery cost <a name="api.get-cheapest-delivery-cost"></a>
 
