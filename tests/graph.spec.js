@@ -85,6 +85,85 @@ describe('graph', () => {
     });
   });
 
+  describe('getPossibleDeliveryRouteNumber', () => {
+    it('should throw aan error if start and end vertex is not exist in adjacency list', () => {
+      // arrange
+      const graph = new Graph();
+
+      graph.addAdjacency('AB1');
+
+      // act and assert
+      expect(() => graph.getPossibleDeliveryRouteNumber('W', 'A')).toThrowError('the start or end vertex is not exist');
+      expect(() => graph.getPossibleDeliveryRouteNumber('A', 'W')).toThrowError('the start or end vertex is not exist');
+    });
+
+    it('should return the possible number of delivery route', () => {
+      // arrange
+      const graph = new Graph();
+
+      graph.addAdjacency('AB1');
+      graph.addAdjacency('AC4');
+      graph.addAdjacency('AD10');
+      graph.addAdjacency('BE3');
+      graph.addAdjacency('CD4');
+      graph.addAdjacency('CF2');
+      graph.addAdjacency('DE1');
+      graph.addAdjacency('EB3');
+      graph.addAdjacency('EA2');
+      graph.addAdjacency('FD1');
+
+      // act
+      const possibleNumber = graph.getPossibleDeliveryRouteNumber('E', 'D');
+
+      // assert
+      expect(possibleNumber).toBe(6);
+    });
+
+    it('should return the possible number of delivery route which is less than 4 stop', () => {
+      // arrange
+      const graph = new Graph();
+
+      graph.addAdjacency('AB1');
+      graph.addAdjacency('AC4');
+      graph.addAdjacency('AD10');
+      graph.addAdjacency('BE3');
+      graph.addAdjacency('CD4');
+      graph.addAdjacency('CF2');
+      graph.addAdjacency('DE1');
+      graph.addAdjacency('EB3');
+      graph.addAdjacency('EA2');
+      graph.addAdjacency('FD1');
+
+      // act
+      const possibleNumber = graph.getPossibleDeliveryRouteNumber('E', 'D', { maxStop: 4 });
+
+      // assert
+      expect(possibleNumber).toBe(4);
+    });
+
+    it('should not count the route that has 0 cost', () => {
+      // arrange
+      const graph = new Graph();
+
+      graph.addAdjacency('AB1');
+      graph.addAdjacency('AC4');
+      graph.addAdjacency('AD10');
+      graph.addAdjacency('BE3');
+      graph.addAdjacency('CD4');
+      graph.addAdjacency('CF2');
+      graph.addAdjacency('DE1');
+      graph.addAdjacency('EB3');
+      graph.addAdjacency('EA2');
+      graph.addAdjacency('FD1');
+
+      // act
+      const possibleNumber = graph.getPossibleDeliveryRouteNumber('E', 'E');
+
+      // assert
+      expect(possibleNumber).toBe(5);
+    });
+  });
+
   describe('getCheapestDeliveryCost', () => {
     it('should throw an error if start or end vertex is not exist in adjacency list', () => {
       // arrage
@@ -97,7 +176,7 @@ describe('graph', () => {
       expect(() => graph.getCheapestDeliveryCost('A', 'W')).toThrowError('the start or end vertex is not exist');
     });
 
-    it('should throw an error if start or end vertex is not exist in adjacency list', () => {
+    it('should return the cheapest delivery cost based on start and end vertex', () => {
       // arrage
       const graph = new Graph();
 
