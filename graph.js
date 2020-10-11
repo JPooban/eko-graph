@@ -63,6 +63,54 @@ class Graph {
   }
 
   /**
+   * Get the number of possible delivery route
+   *
+   * @param {string} start - start vertex
+   * @param {string} end - end vertex
+   * @param {{ maxStop: number }} options
+   * @return {number}
+   */
+  getPossibleDeliveryRouteNumber (start, end, options = {}) {
+    if (!this.adjacency[start] || !this.adjacency[end]) throw new Error('the start or end vertex is not exist');
+
+    const { maxStop = 0 } = options;
+
+    const path = [];
+    const visited = {};
+    const cost = [];
+
+    let count = 0;
+
+    const dfs = (vertex, visit) => {
+      visited[visit] = true;
+      path.push(vertex);
+
+      const total = cost.reduce((result, item) => result + item, 0);
+
+      if ((vertex === end && total > 0) && (maxStop + 1 >= path.length || !maxStop)) {
+        count += 1;
+      } else {
+        // eslint-disable-next-line consistent-return
+        this.adjacency[vertex].forEach((neighbor) => {
+          if (!visited[vertex + neighbor.val]) {
+            cost.push(neighbor.weight);
+
+            return dfs(neighbor.val, vertex + neighbor.val);
+          }
+        });
+      }
+
+      cost.pop();
+      path.pop();
+      visited[visit] = false;
+    };
+
+    dfs(start);
+
+    return count;
+  }
+
+  /**
    * Get cheapest delivery cost
    *
    * @param {string} start - start vertex
