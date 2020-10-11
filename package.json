@@ -1,6 +1,6 @@
 {
   "name": "eko-graph",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "implemented of weighted and directed graph",
   "main": "index.js",
   "scripts": {
