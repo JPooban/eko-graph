@@ -7,6 +7,7 @@
 4. [Example](#example)
 5. [API](#api)
     - [Get delivery cost](#api.get-delivery-cost)
+    - [Get possible delivery route number](#api.get-possible-delivery-route-number)
     - [Get cheapest delivery cose](#api.get-cheapest-delivery-cos)
 6. [Tests](#tests)
 7. [License](#license)
@@ -65,7 +66,41 @@ $ node ./example/get-delivery-cost.js
 ## API <a href="api"></a>
 
 ### Get delivery cost <a href="api.get-delivery-cost"></a>
+Calculate the cost from given route.
+
+```js
+// graph.getDelivertCost(route);
+
+const cost = graph.getDelivertCost([ 'A', 'B', 'E' ]); // -> 4
+```
+
+> In the case of non existing route, it will throw an error with `No Such Route` message.
+
+### Get possible delivery route number <a href="api.get-possible-delivery-route-number"></a>
+
+Calculate​ ​the​ ​number​ ​of​ ​possible​ ​delivery​ ​route​ ​that​ ​can​ ​be​ ​construct​ ​by​ ​the​ ​given conditions.
+
+```js
+// graph.getPossibleDeliveryRoute(start, end, options);
+
+const possibleNumber = graph.getPossibleDeliveryRoute('E', 'D', { maxStop: 4 }); // -> 4
+```
+
+#### Properties
+|  Property  |   Default   | Description |
+|------------|-------------|-------------|
+| `maxStop`  | `undefined` | The maximum stop of each path. (count the path which is length is less than or equal `maxStop + 1`) |
+
 ### Get cheapest delivery cost <a href="api.get-cheapest-delivery-cost"></a>
+
+Calculate​ ​the​ ​cheapest​ ​delivery​ ​route​ ​between​ ​two​ vertex.
+
+```js
+// graph.getCheapestCost(start, end);
+
+const cheapestCost = graph.getCheapestCost('E', 'D'); // -> 9
+```
+
 
 ## Tests <a href="tests"></a>
 
